@@ -19,7 +19,11 @@ dependencies {
 
     // GRPC Dependencies
     implementation 'com.google.protobuf:protobuf-java:3.13.0'
-    implementation 'io.grpc:grpc-all:1.25.0'
+    def grpcVersion = '1.68.0'
+
+    implementation "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
 
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
     implementation 'com.google.code.gson:gson:2.7'
@@ -83,4 +87,11 @@ tasks.register('runPlant2', JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'it.unimi.desm.plant.ThermalPlantMain'
     args 'plant2', '30032', 'localhost', '8090'
+}
+
+tasks.register('runProvider', JavaExec) {
+    group = 'application'
+    description = 'Run ProviderMain (MQTT test publisher)'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'it.unimi.desm.provider.ProviderMain'
 }

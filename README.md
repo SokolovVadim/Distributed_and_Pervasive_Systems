@@ -67,3 +67,22 @@ ThermalPlant is now idle. Press Control+C to stop.
 <===========--> 85% EXECUTING [3m 45s]
 > :runPlant2
 ```
+
+```angular2html
+./gradlew runProvider
+```
+
+Expecting to see
+
+```angular2html
+Published MQTT message to desm/requests: test-request-1766849659907
+```
+
+And then in both plants
+
+```angular2html
+Plant plant1 received MQTT on desm/requests: test-request-1766849659907
+Plant plant2 subscribed to MQTT topic desm/requests
+ThermalPlant is now idle. Press Control+C to stop.
+Plant plant2 received MQTT on desm/requests: test-request-1766849659907
+```
