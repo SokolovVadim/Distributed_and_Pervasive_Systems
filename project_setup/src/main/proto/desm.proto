@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "it.unimi.desm.grpc";
+option java_outer_classname = "DesmProto";
+
+service PlantService {
+  // Called when a new plant joins, so others can add it to their local list
+  rpc NotifyNewPlant (NewPlant)
+      returns (Ack) {}
+
+  // TODO: fill in
+  rpc SendElectionMessage (ElectionMessage)
+      returns (Ack) {}
+  rpc SendWinnerMessage (WinnerMessage)
+      returns (Ack) {}
+}
+
+message NewPlant {
+  string id = 1;
+  string host = 2;
+  int32 grpcPort = 3;
+}
+
+message ElectionMessage {
+  string requestId = 1;
+  string candidateId = 2;
+  double candidatePrice = 3;
+}
+
+message WinnerMessage {
+  string requestId = 1;
+  string winnerId = 2;
+  double winnerPrice = 3;
+}
+
+message Ack {
+  bool ok = 1;
+}
