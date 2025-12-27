@@ -68,3 +68,19 @@ test {
 application {
     mainClass = 'it.unimi.desm.adminserver.AdminServerMain'
 }
+
+tasks.register('runPlant1', JavaExec) {
+    group = 'application'
+    description = 'Run ThermalPlantMain as plant1'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'it.unimi.desm.plant.ThermalPlantMain'
+    args 'plant1', '30031', 'localhost', '8090'
+}
+
+tasks.register('runPlant2', JavaExec) {
+    group = 'application'
+    description = 'Run ThermalPlantMain as plant2'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'it.unimi.desm.plant.ThermalPlantMain'
+    args 'plant2', '30032', 'localhost', '8090'
+}
